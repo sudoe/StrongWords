@@ -1,0 +1,26 @@
+<html lang="en">
+<%- include("./partials/head.ejs") %>
+
+<body>
+  <%- include("./partials/nav.ejs") %>
+
+  <div class="create-blog content">
+    <form action="/blogs" method="POST">
+      <label for="BDBid">BDBid:</label>
+      <input type="text" id="BDBid" name="BDBid" required>
+      <label for="Language">Language:</label>
+      <input type="text" id="Language" name="Language" required>
+      <label for="Lemma">Lemma:</label>
+      <input type="text" id="Lemma" name="Lemma" required>
+      <label for="StrongNumber">StrongNumber:</label>
+      <input type="text" id="StrongNumber" name="StrongNumber" required>
+      <label for="Entry">Entry:</label>
+      <textarea id="Entry" name="Entry" required></textarea>
+
+      <button>Submit</button>
+    </form>
+  </div>
+
+  <%- include("./partials/footer.ejs") %>
+</body>
+</html>

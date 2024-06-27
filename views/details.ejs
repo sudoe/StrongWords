@@ -1,0 +1,22 @@
+<html lang="en">
+<%- include("./partials/head.ejs") %>
+
+<body>
+  <%- include("./partials/nav.ejs") %>
+
+  <div class="details content">
+    <div class="content">
+      <h2><%= blog.Lemma %></h2>
+      <p>Strong Number</p>
+      <p><a href='https://www.blueletterbible.org/lexicon/<%= blog.StrongNumber %>/kjv/wlc/0-1/'><%= blog.StrongNumber %></a></p>
+      <p>Language</p>
+      <p><%= blog.Language %></p>
+      <p><%= blog.Entry %></p>
+  
+  </div>
+
+  <%- include("./partials/footer.ejs") %>
+
+  
+</body>
+</html>
