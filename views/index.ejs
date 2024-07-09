@@ -5,11 +5,11 @@
   <%- include("./partials/nav.ejs") %>
 
   <div class="blogs content">
-    <h2>All Entries</h2>
+    <h2>First <%= blogs.length %> Entries</h2>
 
     <% if (blogs.length > 0) { %>
       <% blogs.forEach(blog => { %>
-        <a class="single" href="/blogs/<%= blog.StrongNumber %>">
+        <a class="single" href="/words/<%= blog.StrongNumber %>">
           <h3 class="title"><%= blog.Lemma %></h3>
           <p class="snippet"><%= blog.StrongNumber %></p>
         </a>

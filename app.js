@@ -2,12 +2,13 @@ const express = require('express');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 const blogRoutes = require('./routes/blogRoutes');
+const config = require('./config.js');
 
 // express app
 const app = express();
 
 // connect to mongodb & listen for requests
-const dbURI = "mongodb+srv://user:pass@nodetuts.53sq86j.mongodb.net/?retryWrites=true&w=majority&appName=nodetuts";
+const dbURI = 'mongodb+srv://'+config.username+':'+config.password+'@'+ config.database;
 
 mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(result => app.listen(3000))
@@ -27,7 +28,7 @@ app.use((req, res, next) => {
 
 // routes
 app.get('/', (req, res) => {
-  res.redirect('/blogs');
+  res.redirect('/words');
 });
 
 app.get('/about', (req, res) => {
@@ -36,9 +37,10 @@ app.get('/about', (req, res) => {
 
 // blog routes
 app.use('/blogs', blogRoutes);
+app.use('/words', blogRoutes);
 
 // Search route
-app.post("/search", (req,res) => {
+app.get("/search", (req,res) => {
   console.log(req.body);
   res.render('details', { title: 'details' });
 })

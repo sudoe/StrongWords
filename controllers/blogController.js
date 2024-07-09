@@ -1,13 +1,15 @@
-const Blog = require('../models/blog');
-const mongoose = require('mongoose');
+const Blog = require('../models/blog'); // Import the blog model
+const mongoose = require('mongoose'); // Connect to MongoDB
 
 const blog_index = (req, res) => {
-    Blog.find({'_id': { $in: [
-      mongoose.Types.ObjectId('667c3858a999b2c0682926e5'),
-      mongoose.Types.ObjectId('667c3858a999b2c0682926e6'), 
-      mongoose.Types.ObjectId('4ed3f18132f50c491100000e')]}}).sort({ createdAt: -1 })
-    .then(result => {
-      res.render('index', { blogs: result, title: 'All blogs' });
+    Blog.find(
+      ({ StrongNumber: 1, 
+        StrongNumber: { $exists: true, $ne: null} //also check for nulls
+      }))
+      .limit(10) // limit results to 10
+      // .sort({ StrongNumber: 1 }) // sort by StrongNumber in ascending order
+      .then(result => {
+      res.render('index', { blogs: result, title: 'All Words' }); // render the index page with the blog data
     })
     .catch(err => {
       console.log(err);
@@ -15,13 +17,10 @@ const blog_index = (req, res) => {
 }
 
 const blog_details = (req, res) => {
-  const id = req.params.id
-  // console.log(req.params);
-  // Blog.findOne({ _id: id })
+  const id = req.params.id // Get the blog ID from the URL parameter
   Blog.findOne({ StrongNumber: id })
     .then(result => {
-      console.log(result);
-      res.render('details', { blog: result, title: 'Blog Details' });
+      res.render('details', { blog: result, title: 'Word Details' });
     })
     .catch(err => {
       console.log(err);
